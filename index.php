@@ -8,20 +8,46 @@
     <title>Create, read, update, delete</title>
 </head>
 <body>
-    <form action="registrar.php" method="POST">
-        <label for="">Name</label>
-        <input type="text" name="txtName" id="txtName">
-        <label for="">Email</label>
-        <input type="email" name="txtEmail" id="txtEmail">
-        <input type="submit" value="Enviar">
-    </form>
-    <h1>Table records</h1>
-    <table id="table-records">
-        <tr>
-            <th>N°</th>
-            <th>Nombre</th>
-            <th>Email</th>
-        </tr>
-    </table>
+    <div class="container">
+        <h1 class="logo">
+            Create, read, update, delete <span>CRUD</span>
+        </h1>
+        
+        <div class="target-container">
+            <div class="target-form">
+                <form action="registrar.php" method="POST">
+                    <p>
+                        <label for="">Name</label>
+                        <input type="text" name="txtName" id="txtName">
+                    </p>
+                    <p>
+                        <label for="">Email</label>
+                        <input type="email" name="txtEmail" id="txtEmail">
+                    </p>
+                    <p>
+                        <button type="submit">SEND</button>
+                    </p>
+                </form>
+            </div>
+
+            <div class="target-info">
+                <h1>Table records</h1>
+                <table id="table-records">
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>   
 </body>
 </html>
+
+
+
+
+
+
+        
