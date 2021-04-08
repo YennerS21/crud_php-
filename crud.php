@@ -9,21 +9,22 @@ class Crud extends Conexion
 	private $miConexion;
 	private $retorno;
 
+	
 
 	function __construct()
 	{
+		//$this->name = $_POST['txtName'];
+		//$this->email = $_POST['txtEmail'];
 		$this->miConexion = new Conexion();
         $this->miConexion = $this->miConexion->conectarme();
+
 		$this->retorno = new stdClass();
 	}
 
 	
 
-	public function createPerson($id, $name, $email)
+	public function create($id, $name, $email)
 	{
-		$id = $id;
-		$name = $name;
-		$email = $email;
 		$dateCreate=getdate();
 		$dateUpdate=getdate();
         try {
@@ -36,16 +37,65 @@ class Crud extends Conexion
         	$this->retorno->mensaje = "OK";
 		} catch (PDOException $e) {
 			$this->retorno->estado = false;
+	        $this->retorno->datos = $resultado;
+			$this->retorno->mensaje = "Error: " .$e->getMessage();
+		}
+		return $this->retorno;
+	}
+	public function read()
+	{
+		try {
+			$sentenciaSql ="SELECT * FROM public.person";
+			$resultado = $this->miConexion->query($sentenciaSql);
+			
+			$this->retorno->estado =true;
+	        $this->retorno->datos = $resultado->fetchall(PDO::FETCH_ASSOC);;
+			$this->retorno->mensaje ="ok";
+		} catch (PDOException $e) {
+			$this->retorno->estado = false;
+	        $this->retorno->datos = null;
+			$this->retorno->mensaje = "Error: " .$e->getMessage();
+		}
+		return $this->retorno;
+
+	}
+	public function update($id,$name,$email)
+	{
+		try {
+			$sentenciaSql = "UPDATE person SET id_per=?, per_name=?, per_email=?, per_date_update=?, status=? WHERE id_per=$id";
+			$resultado = $this->miConexion->prepare($sentenciaSql);
+			$datoUp = array(4,"Alberto","3213049644","2021-04-07", 0);
+			$resultado->execute($datoUp);
+			$this->retorno->estado = true;
+	        $this->retorno->datos = $resultado;
+		} catch (PDOException $e) {
+			$this->retorno->estado = false;
 	        $this->retorno->datos = null;
 			$this->retorno->mensaje = "Error: " .$e->getMessage();
 		}
 		return $this->retorno;
 	}
+	public function delete($id)
+	{
+		$sentenciaSql = "UPDATE person SET status=? WHERE id_per=$id";
+		try {
+			$resultado = $this->miConexion->prepare($sentenciaSql);
+			$datoDel = array(0);
+			$resultado->execute($datoDel);
+			$this->retorno->estado = true;
+	        $this->retorno->datos = $resultado;
+		} catch (PDOException $e) {
+			$this->retorno->estado = false;
+	        $this->retorno->datos = null;
+			$this->retorno->mensaje = "Error: " .$e->getMessage();
+		}
+	}
+	
 }
-$ejemplo = new Crud();
-$ejemplo->createPerson(19,"Usuario19","Usuario19@gmail.com");
+
+
 //READ
-            foreach($ejemplo as $fila) {
-                print_r($fila);
-            }
+/* foreach($ejemplo as $fila) {
+	print_r($fila);
+}*/
 ?>

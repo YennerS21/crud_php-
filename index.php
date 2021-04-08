@@ -15,7 +15,7 @@
         
         <div class="target-container">
             <div class="target-form">
-                <form action="registrar.php" method="POST">
+                <form action="controlador.crud.php" method="POST">
                     <p>
                         <label for="">Name</label>
                         <input type="text" name="txtName" id="txtName">
