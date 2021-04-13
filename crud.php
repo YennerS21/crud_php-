@@ -4,7 +4,7 @@ require "conexion.php";
  *
  * 
  */
-class Crud extends Conexion
+class Crud 
 {
 	private $miConexion;
 	private $retorno;
@@ -13,11 +13,8 @@ class Crud extends Conexion
 
 	function __construct()
 	{
-		//$this->name = $_POST['txtName'];
-		//$this->email = $_POST['txtEmail'];
 		$this->miConexion = new Conexion();
         $this->miConexion = $this->miConexion->conectarme();
-
 		$this->retorno = new stdClass();
 	}
 
@@ -30,7 +27,7 @@ class Crud extends Conexion
         try {
 			$sentenciaSql = "INSERT INTO person(id_per, per_name, per_email, per_date_create, per_date_update, status) VALUES (?, ?, ?, ?, ?, ?)";
 			$resultado = $this->miConexion->prepare($sentenciaSql);
-            $datosIns = array($id,$name,$email,"2021-06-12", "2021-06-12", true);
+            $datosIns = array($id,$name,$email,"2021-04-12", "2021-04-12", true);
             $resultado->execute($datosIns);
 			$this->retorno->estado = true;
         	$this->retorno->datos = $resultado;
@@ -47,9 +44,9 @@ class Crud extends Conexion
 		try {
 			$sentenciaSql ="SELECT * FROM public.person";
 			$resultado = $this->miConexion->query($sentenciaSql);
-			
+			$a = $resultado->fetchAll();
 			$this->retorno->estado =true;
-	        $this->retorno->datos = $resultado->fetchall(PDO::FETCH_ASSOC);;
+	        $this->retorno->datos = $a;
 			$this->retorno->mensaje ="ok";
 		} catch (PDOException $e) {
 			$this->retorno->estado = false;
@@ -77,8 +74,8 @@ class Crud extends Conexion
 	}
 	public function delete($id)
 	{
-		$sentenciaSql = "UPDATE person SET status=? WHERE id_per=$id";
 		try {
+			$sentenciaSql = "UPDATE person SET status=? WHERE id_per=$id";
 			$resultado = $this->miConexion->prepare($sentenciaSql);
 			$datoDel = array(0);
 			$resultado->execute($datoDel);
@@ -92,7 +89,6 @@ class Crud extends Conexion
 	}
 	
 }
-
 
 //READ
 /* foreach($ejemplo as $fila) {

@@ -15,7 +15,12 @@
         
         <div class="target-container">
             <div class="target-form">
-                <form action="controlador.crud.php" method="POST">
+                <form action="controlador/controlador.create.php" method="POST">
+                    <span>Form register</span>
+                    <p>
+                    <label for="">Nº ID</label>
+                        <input type="number" name="numID" id="numID">
+                    </p>
                     <p>
                         <label for="">Name</label>
                         <input type="text" name="txtName" id="txtName">
@@ -25,7 +30,7 @@
                         <input type="email" name="txtEmail" id="txtEmail">
                     </p>
                     <p>
-                        <button type="submit">SEND</button>
+                        <button type="submit">Create</button>
                     </p>
                 </form>
             </div>
@@ -38,6 +43,7 @@
                         <th>Nombre</th>
                         <th>Email</th>
                     </tr>
+                    <?php include('controlador/controlador.read.php')?>
                 </table>
             </div>
         </div>

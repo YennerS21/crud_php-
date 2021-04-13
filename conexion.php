@@ -25,24 +25,15 @@ class Conexion extends PDO{
         }
     }
     public function conectarme()
-    {
-        if($this->instancia==Null)
+    {   
+        if(!isset($this->instancia))
         {
-            return "ERROR";
+            return "fail";
         }
         return $this->instancia;
+        
     }
-    /**
-     * 
-     * @return type
-     */
-    /*public static function singleton(){
-        if (!isset(self::$instancia)){
-            $miclase = __CLASS__;
-            self::$instancia = new $miclase;
-        }
-        return self::$instancia;
-    } */   
+   
 
 }
 
