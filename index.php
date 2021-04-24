@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+
+
+
     <title>Create, read, update, delete</title>
 </head>
 <body>
@@ -15,7 +18,7 @@
         
         <div class="target-container">
             <div class="target-form">
-                <form action="controlador/controlador.create.php" method="POST">
+                <form method="POST">
                     <span>Form register</span>
                     <p>
                     <label for="">Nº ID</label>
@@ -29,8 +32,12 @@
                         <label for="">Email</label>
                         <input type="email" name="txtEmail" id="txtEmail">
                     </p>
+                    <p hidden>
+                        <label for="">Status</label>
+                        <input type="number" name="numStatus" id="numStatus">
+                    </p>
                     <p>
-                        <button type="submit">Create</button>
+                        <button type="submit" id="btnSend">Send</button>
                     </p>
                 </form>
             </div>
@@ -43,12 +50,16 @@
                         <th>Nombre</th>
                         <th>Email</th>
                     </tr>
-                    <?php include('controlador/controlador.read.php')?>
+                    <tbody id="people">
+                    </tbody>
                 </table>
+
             </div>
         </div>
-    </div>   
+    </div>
 </body>
+<script src="controlador/controlador.crud.js"></script>
+
 </html>
 
 

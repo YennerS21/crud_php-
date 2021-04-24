@@ -42,11 +42,11 @@ class Crud
 	public function read()
 	{
 		try {
-			$sentenciaSql ="SELECT * FROM public.person";
+			$sentenciaSql ="SELECT * FROM person";
 			$resultado = $this->miConexion->query($sentenciaSql);
-			$a = $resultado->fetchAll();
+			$retorno = $resultado->fetchAll(PDO::FETCH_ASSOC);
 			$this->retorno->estado =true;
-	        $this->retorno->datos = $a;
+	        $this->retorno->datos = $retorno;
 			$this->retorno->mensaje ="ok";
 		} catch (PDOException $e) {
 			$this->retorno->estado = false;
@@ -54,14 +54,13 @@ class Crud
 			$this->retorno->mensaje = "Error: " .$e->getMessage();
 		}
 		return $this->retorno;
-
 	}
 	public function update($id,$name,$email)
 	{
 		try {
 			$sentenciaSql = "UPDATE person SET id_per=?, per_name=?, per_email=?, per_date_update=?, status=? WHERE id_per=$id";
 			$resultado = $this->miConexion->prepare($sentenciaSql);
-			$datoUp = array(4,"Alberto","3213049644","2021-04-07", 0);
+			$datoUp = array($id,$name,$email,"2021-04-07", 1);
 			$resultado->execute($datoUp);
 			$this->retorno->estado = true;
 	        $this->retorno->datos = $resultado;

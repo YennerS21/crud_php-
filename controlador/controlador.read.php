@@ -1,7 +1,7 @@
 <?php
 
-    require "./crud.php";
-    
+    include_once "C:\Apache24\htdocs\crud_php-\crud.php";//Incluye una vez en tu archivo
+
     $objCrud = new Crud();
 
     error_reporting(1);
@@ -14,16 +14,7 @@
         print_r($ver_personas->mensaje);
     }else{
         //header('Location: index.php');
-        foreach ($ver_personas->datos as $persona => $value) {
-            echo "<tr>";
-            echo "<td>".$value['id_per']."</td>";
-            echo "<td>".$value['per_name']."</td>";
-            echo "<td>".$value['per_email']."</td>";
-            echo "<td>".$value['status']."</td>";
-            echo "<td>EDITAR</td>";
-            echo "<td>ELIMINAR</td>";
-            echo "</tr>";
-        }
+        echo json_encode($ver_personas->datos);
     }
     die();
     
