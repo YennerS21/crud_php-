@@ -1,13 +1,11 @@
 <?php
 
-require "./crud.php";
+include_once "C:\Apache24\htdocs\crud_php-\crud.php";
 
-$idUpdate = $_POST['id'];
-$name = $_POST['name'];
-$email = $_POST['email'];
+$idUpdate = $_POST['txtId'];
+$name = $_POST['txtName'];
+$email = $_POST['txtEmail'];
 $objCrud = new Crud();
-
-echo $idUpdate;
 
 /*
 if (isset($idUpdate)) {

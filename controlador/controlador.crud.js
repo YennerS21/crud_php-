@@ -21,30 +21,66 @@ const open = document.addEventListener('DOMContentLoaded', ()=>{
             console.log("mal");
         }
     })
-    .catch(err => console.log("error: "+err));
+    .catch(function(error) {
+        console.log(error);
+    })
    
     
 });
 
+
 //FUNCIONALIDAD PARA EDITAR REGISTRO
+//Funcion que imita el evento onclick
 const edit = (elemento, evento, selector, handler) => {
     elemento.addEventListener(evento, e => {
         if (e.target.closest(selector)) {
             handler(e)
         }
     });
-}
+};
 
 edit(document, 'click', '.btnEdit', e=>{
-    let fila = e.target.parentNode.parentNode;
-    let id = fila.firstElementChild.innerHTML;
-    let name = fila.children[1].innerHTML;
-    let email = fila.children[2].innerHTML;
-    
-    document.getElementById('numID').value =id;
-    document.getElementById('txtName').value =name;
-    document.getElementById('txtEmail').value =email;
-    document.getElementById('btnSend').innerHTML ='Update';
+    //Ocultar y mostrar botones para el procedimiento de edicion
+    var btnSave =document.getElementById('btnSave');
+    var btnSend =document.getElementById('btnSend');
+    var btnCancel =document.getElementById('btnCancel');
+    btnSend.hidden=true;
+    btnSave.hidden=false;
+    btnCancel.hidden=false;
 
-    
+    //Recuperamos los datos del registro a modificar
+
+    var fila = e.target.parentNode.parentNode;
+    var dataUp =
+    {
+        id: fila.firstElementChild.innerHTML,
+        name: fila.children[1].innerHTML,
+        email: fila.children[2].innerHTML
+    };
+
+    //Cargamos el formulario con los datos listos para ser modificados
+    document.getElementById('numID').value =dataUp.id;
+    document.getElementById('txtName').value =dataUp.name;
+    document.getElementById('txtEmail').value =dataUp.email;
+
 });
+
+var save = document.getElementById('btnSave');
+save.addEventListener('click', update);
+
+function update() {
+
+    var formulario = document.getElementById('frmDatos');
+    var datos = new FormData(formulario);
+    fetch("controlador/controlador.update.php",
+    {
+        method: 'post',
+        body: formulario
+        
+    })
+    .then(res => res.text())
+    .then(data => {
+            console.log(data);
+    })
+    .catch(error=>{console.log(error)})
+}

@@ -18,7 +18,7 @@
         
         <div class="target-container">
             <div class="target-form">
-                <form method="POST">
+                <form method="POST" id="frmDatos">
                     <span>Form register</span>
                     <p>
                     <label for="">Nº ID</label>
@@ -37,7 +37,9 @@
                         <input type="number" name="numStatus" id="numStatus">
                     </p>
                     <p>
-                        <button type="submit" id="btnSend">Send</button>
+                    <button type="button" id="btnSend">Send</button>
+                    <button type="button" id="btnSave" hidden>Save</button>
+                    <button type="reset" id="btnCancel" hidden>Cancel</button>
                     </p>
                 </form>
             </div>
