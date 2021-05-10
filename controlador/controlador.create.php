@@ -1,17 +1,13 @@
 <?php
 
-    require "../crud.php";
+    include_once "C:\Apache24\htdocs\crud_php-\crud.php";
 
-    
-    $objCrud = new Crud();
-
-    error_reporting(1);
 
     $numID = $_POST['numID']; 
     $name = $_POST['txtName']; 
     $email = $_POST['txtEmail'];
+    $objCrud = new Crud();
 
-    echo $name;
 
     if(isset($name)){
         header('Location: ../index.php');

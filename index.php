@@ -22,7 +22,7 @@
                     <span>Form register</span>
                     <p>
                     <label for="">Nº ID</label>
-                        <input type="number" name="numID" id="numID">
+                        <input type="number" name="numID" id="numID" >
                     </p>
                     <p>
                         <label for="">Name</label>
@@ -37,9 +37,10 @@
                         <input type="number" name="numStatus" id="numStatus">
                     </p>
                     <p>
-                    <button type="button" id="btnSend">Send</button>
-                    <button type="button" id="btnSave" hidden>Save</button>
-                    <button type="reset" id="btnCancel" hidden>Cancel</button>
+                    <button type="button" id="btnCreate">Create</button>
+                    <button type="button" id="btnEdit" >Edit</button>
+                    <button type="button" id="btnDelete" >Delete</button>
+                    <button type="reset" id="btnCancel" >Cancel</button>
                     </p>
                 </form>
             </div>
