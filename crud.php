@@ -42,7 +42,7 @@ class Crud
 	public function read()
 	{
 		try {
-			$sentenciaSql ="SELECT * FROM person";
+			$sentenciaSql ="SELECT * FROM person WHERE status = 'true'";
 			$resultado = $this->miConexion->query($sentenciaSql);
 			$retorno = $resultado->fetchAll(PDO::FETCH_ASSOC);
 			$this->retorno->estado =true;
